@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, effect } from '@angular/core';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { Todo } from './model/todo.type';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { Todo } from './model/todo.type';
   standalone: true,
 })
 export class AppComponent {
-  title = 'junior-frontend-developer-task';
+  title = 'angular-simple-todo';
 
   protected tasks: Todo[] = [
     {
@@ -33,14 +33,11 @@ export class AppComponent {
       description: 'Kupić kwiaty i tort.',
     },
   ];
-  protected descVisible: boolean = false;
 
-  toggleCompleted(task: any) {
-    task.status = task.status === 'Completed' ? 'Planned' : 'Completed';
-  }
-
-  toggleDescription() {
-    this.descVisible = !this.descVisible;
+  constructor(private titleService: Title) {
+    effect(() => {
+      this.titleService.setTitle(this.title);
+    });
   }
 
   toggleModal() {
