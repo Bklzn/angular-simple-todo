@@ -1,9 +1,7 @@
 <div class="container">
   <div class="d-flex my-4">
     <h1>Lista zadań</h1>
-    <button class="btn btn-primary mx-3" (click)="toggleModal()">
-      Dodaj zadanie
-    </button>
+    <app-todo-add-form></app-todo-add-form>
   </div>
   <ul class="list-group">
     @for (task of tasks; track $index) {
