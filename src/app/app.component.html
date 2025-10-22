@@ -1,11 +1,36 @@
-<div class="container">
-  <div class="d-flex my-4">
-    <h1>Lista zadań</h1>
+<div class="container bg-dark-subtle rounded-3 shadow p-0 pt-2 mt-5">
+  <div class="d-flex justify-content-between p-3 py-1">
+    <h1 class="fs-2">Lista zadań</h1>
     <app-todo-add-form></app-todo-add-form>
   </div>
-  <ul class="list-group">
-    @for (task of tasks; track $index) {
-    <app-todo-item [task]="task"></app-todo-item>
-    }
-  </ul>
+  <table class="table rounded-3 m-0">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <!-- <th scope="col">Other</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      @for (task of tasks; track $index) {
+      <tr
+        app-todo-item
+        [task]="task"
+        [index]="$index"
+        class="item p-2 px-3 bg-white"
+        [ngClass]="[task.status.toLowerCase()]"
+      ></tr>
+      <tr>
+        <td colspan="5" class="p-0">
+          <div class="p-2" [id]="'task' + $index">
+            {{ task.description }}
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
 </div>
