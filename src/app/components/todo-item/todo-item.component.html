@@ -1,0 +1,19 @@
+<li class="list-group-item d-block">
+  <div class="item" [ngClass]="{ completed: task().status === 'Completed' }">
+    <input
+      type="checkbox"
+      class="form-check-input me-2"
+      [checked]="task().status === 'Completed'"
+      (change)="toggleCompleted(task())"
+    />
+    <b class="text-primary">{{ task().name }}</b>
+    <button class="btn btn-link" (click)="toggleDescription()">
+      pokaż opis
+    </button>
+    <br />
+    {{ task().date }} - <span class="badge bg-info">{{ task().status }}</span>
+    @if (descVisible) {
+    <p>{{ task().description }}</p>
+    }
+  </div>
+</li>

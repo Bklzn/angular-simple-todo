@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { Todo } from './model/todo.type';
 
 @Component({
   selector: 'app-root',
-  imports: [NgClass],
+  imports: [TodoItemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
@@ -11,7 +13,7 @@ import { NgClass } from '@angular/common';
 export class AppComponent {
   title = 'junior-frontend-developer-task';
 
-  protected tasks = [
+  protected tasks: Todo[] = [
     {
       name: 'Zrobić zakupy spożywcze',
       status: 'Completed',
