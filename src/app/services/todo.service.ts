@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Todo } from '../model/todo.type';
+import { FormControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,38 @@ export class TodoService {
   addTask(task: Todo) {
     this.tasks.update((tasks) => tasks.concat(task));
     this.isCollapsed.update((isCollapsed) => [...isCollapsed, true]);
+  }
+  editTask(task: Todo, index: number) {
+    this.tasks.update((tasks) => [
+      ...tasks.slice(0, index),
+      task,
+      ...tasks.slice(index + 1),
+    ]);
+    this.isCollapsed.update((isCollapsed) => [
+      ...isCollapsed.slice(0, index),
+      isCollapsed[index],
+      ...isCollapsed.slice(index + 1),
+    ]);
+  }
+
+  deleteTask(index: number) {
+    this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
+    this.isCollapsed.update((isCollapsed) =>
+      isCollapsed.filter((_, i) => i !== index)
+    );
+  }
+
+  noPastDateValidator(control: FormControl): ValidationErrors | null {
+    if (!control.value) {
+      return null;
+    }
+    const date = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (date < today) {
+      return { pastDate: true };
+    }
+    return null;
   }
 
   constructor() {}

@@ -19,16 +19,16 @@ import { Todo } from '../../model/todo.type';
   styleUrl: './todo-add-form.component.scss',
 })
 export class TodoAddFormComponent {
+  todoService = inject(TodoService);
   minDate = new Date();
   todoForm = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     date: new FormControl<string>('', [
       Validators.required,
-      this.noPastDateValidator,
+      this.todoService.noPastDateValidator,
     ]),
     description: new FormControl<string>('', [Validators.maxLength(300)]),
   });
-  todoService = inject(TodoService);
 
   openModal() {
     const modalInstance = new Modal('#addTodoForm');
@@ -55,18 +55,5 @@ export class TodoAddFormComponent {
     this.closeModal();
 
     this.todoForm.reset();
-  }
-
-  noPastDateValidator(control: FormControl): ValidationErrors | null {
-    if (!control.value) {
-      return null;
-    }
-    const date = new Date(control.value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (date < today) {
-      return { pastDate: true };
-    }
-    return null;
   }
 }

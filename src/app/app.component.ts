@@ -2,7 +2,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { Title } from '@angular/platform-browser';
 import { TodoService } from './services/todo.service';
 import { TodoAddFormComponent } from './components/todo-add-form/todo-add-form.component';
-import { NgClass } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
 import { NgbCollapseModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { Todo } from './model/todo.type';

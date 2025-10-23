@@ -1,0 +1,104 @@
+<button class="btn btn-outline-primary m-auto border-0" (click)="openModal()">
+  <i class="bi bi-pen"></i>
+</button>
+<div
+  class="modal fade"
+  [id]="'editTodoForm' + index()"
+  tabindex="-1"
+  [attr.aria-labelledby]="'editTotoFormLabel' + index()"
+  aria-hidden="false"
+>
+  @let formControl = todoForm.controls;
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form [formGroup]="todoForm" (submit)="submitAddForm()">
+        <div class="modal-header bg-dark-subtle">
+          <h1 class="modal-title fs-5" id="addTotoFormLabel">Edytuj zadanie</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nazwa</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              formControlName="name"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              [ngClass]="{
+                'd-block': formControl.name.invalid && formControl.name.touched
+              }"
+            >
+              This field is required
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Data</label>
+            <input
+              type="date"
+              class="form-control"
+              id="date"
+              name="date"
+              min="{{ minDate | date : 'yyyy-MM-dd' }}"
+              formControlName="date"
+              required
+            />
+
+            <div
+              class="invalid-feedback"
+              [ngClass]="{
+                'd-block': formControl.date.invalid && formControl.date.touched
+              }"
+            >
+              @if (formControl.date.errors?.['required']) { This field is
+              required } @if (formControl.date.errors?.['pastDate']) { Date
+              cannot be in the past }
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Opis</label>
+            <textarea
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              formControlName="description"
+              rows="3"
+              maxlength="300"
+              minlength="3"
+            ></textarea>
+            <div
+              class="invalid-feedback"
+              [ngClass]="{
+                'd-block':
+                  formControl.description.invalid &&
+                  formControl.description.touched
+              }"
+            >
+              Maximum length is 300 characters
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-dark-subtle">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="closeModal()"
+          >
+            Zamknij
+          </button>
+          <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<button class="btn btn-outline-danger m-auto border-0" (click)="openModal()">
+  <i class="bi bi-trash3"></i>
+</button>
+<div
+  class="modal fade"
+  [id]="'deleteTodoForm' + index()"
+  tabindex="-1"
+  [attr.aria-labelledby]="'deleteTotoFormLabel' + index()"
+  aria-hidden="false"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark-subtle">
+        <h1 class="modal-title fs-5" id="addTotoFormLabel">Usuń zadanie</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Czy na pewno chcesz usunąć to zadanie
+          <b>"{{ todoService.tasks()[index()].name }}"</b>?
+        </p>
+      </div>
+      <div class="modal-footer bg-dark-subtle">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Zamknij
+        </button>
+        <button class="btn btn-danger" (click)="deleteTask()">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,7 @@
         <th scope="col">Description</th>
         <th scope="col">Date</th>
         <th scope="col">Status</th>
-        <!-- <th scope="col">Other</th> -->
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,6 @@
         [index]="$index"
         class="item p-2 px-3 bg-white"
         [ngClass]="[task.status.toLowerCase()]"
-        [isCollapsed]="isCollapsed()[$index]"
       >
         @if (task.description) {
         <button
@@ -48,7 +47,7 @@
       </tr>
       <tr>
         <td class="p-0"></td>
-        <td colspan="4" class="p-0">
+        <td colspan="5" class="p-0">
           <div
             [ngbCollapse]="isCollapsed()[$index]"
             [id]="'taskDescription' + $index"

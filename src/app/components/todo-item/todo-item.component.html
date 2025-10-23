@@ -17,3 +17,7 @@
 <td style="min-width: 100px">
   <span class="badge bg-info">{{ task().status }}</span>
 </td>
+<td class="d-flex">
+  <app-todo-edit-item [index]="index()"></app-todo-edit-item>
+  <app-todo-delete-item [index]="index()"></app-todo-delete-item>
+</td>
