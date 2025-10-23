@@ -4,19 +4,16 @@
     class="form-check-input me-2"
     [checked]="task().status === 'Completed'"
     (change)="toggleCompleted(task())"
+    [id]="'taskName' + index"
   />
 </td>
-<td>
+<td (click)="toggleCompleted(task())" role="button">
   <b class="text-primary w-25">{{ task().name }}</b>
 </td>
 <td>
-  <button class="btn btn-primary m-auto">pokaż opis</button>
+  <ng-content></ng-content>
 </td>
 <td>{{ task().date }}</td>
 <td style="min-width: 100px">
   <span class="badge bg-info">{{ task().status }}</span>
 </td>
-<!-- <button class="btn btn-link" (click)="toggleDescription()">pokaż opis</button>
-@if (descVisible) {
-<p>{{ task().description }}</p>
-} -->

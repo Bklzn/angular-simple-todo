@@ -1,21 +1,19 @@
-import {
-  AfterViewInit,
-  Component,
-  effect,
-  ElementRef,
-  inject,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { Title } from '@angular/platform-browser';
 import { TodoService } from './services/todo.service';
 import { TodoAddFormComponent } from './components/todo-add-form/todo-add-form.component';
 import { NgClass } from '@angular/common';
+import { Component, effect, inject } from '@angular/core';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
-  imports: [TodoItemComponent, TodoAddFormComponent, NgClass],
+  imports: [
+    TodoItemComponent,
+    TodoAddFormComponent,
+    NgClass,
+    NgbCollapseModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
@@ -30,4 +28,5 @@ export class AppComponent {
       this.titleService.setTitle(this.title);
     });
   }
+  isCollapsed = this.tasks.map(() => true);
 }

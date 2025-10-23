@@ -1,15 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  input,
-  Output,
-  signal,
-  ViewChild,
-} from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Todo } from '../../model/todo.type';
-import { Collapse } from 'bootstrap';
 
 @Component({
   selector: '[app-todo-item]',
@@ -20,6 +10,7 @@ import { Collapse } from 'bootstrap';
 export class TodoItemComponent {
   task = input.required<Todo>();
   index = input.required<number>();
+  isCollapsed = input.required<boolean>();
 
   toggleCompleted(task: any) {
     task.status = task.status === 'Completed' ? 'Planned' : 'Completed';

@@ -22,11 +22,24 @@
         [index]="$index"
         class="item p-2 px-3 bg-white"
         [ngClass]="[task.status.toLowerCase()]"
-      ></tr>
+        [isCollapsed]="isCollapsed[$index]"
+      >
+        <button
+          class="btn btn-outline-secondary"
+          (click)="isCollapsed[$index] = !isCollapsed[$index]"
+        >
+          <i class="bi bi-card-text"></i>
+        </button>
+      </tr>
       <tr>
-        <td colspan="5" class="p-0">
-          <div class="p-2" [id]="'task' + $index">
-            {{ task.description }}
+        <td class="p-0"></td>
+        <td colspan="4" class="p-0">
+          <div
+            [ngbCollapse]="isCollapsed[$index]"
+            [id]="'taskDescription' + $index"
+            #collapse="ngbCollapse"
+          >
+            <p class="p-2 pt-0 m-0">{{ task.description }}</p>
           </div>
         </td>
       </tr>
