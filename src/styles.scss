@@ -1,14 +1,15 @@
 table {
   tbody {
     tr {
-      &:last-child {
+      &:last-child,
+      &:nth-last-child(2):not(.descShowed) {
         td {
           border-bottom: none !important;
-          &:nth-child(1) {
-            border-bottom-left-radius: var(--bs-border-radius-lg) !important;
+          &:first-child {
+            border-bottom-left-radius: var(--bs-border-radius-lg);
           }
           &:last-child {
-            border-bottom-right-radius: var(--bs-border-radius-lg) !important;
+            border-bottom-right-radius: var(--bs-border-radius-lg);
           }
         }
       }

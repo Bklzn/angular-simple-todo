@@ -1,6 +1,6 @@
 <div class="container bg-dark-subtle rounded-3 shadow p-0 pt-2 mt-5">
-  <div class="d-flex justify-content-between p-3 py-1">
-    <h1 class="fs-2">Lista zadań</h1>
+  <div class="d-flex flex-wrap gap-2 justify-content-between p-3 py-1">
+    <h1 class="fs-2 mx-auto mx-sm-0">Lista zadań</h1>
     <input
       type="text"
       class="form-control m-auto"
@@ -29,6 +29,7 @@
         [index]="$index"
         class="item p-2 px-3 bg-white"
         [ngClass]="[task.status.toLowerCase()]"
+        [ngClass]="{ descShowed: !isCollapsed()[$index] }"
       >
         @if (task.description) {
         <button
