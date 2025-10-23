@@ -15,27 +15,35 @@
       </tr>
     </thead>
     <tbody>
-      @for (task of tasks; track $index) {
+      @for (task of tasks(); track $index) {
       <tr
         app-todo-item
         [task]="task"
         [index]="$index"
         class="item p-2 px-3 bg-white"
         [ngClass]="[task.status.toLowerCase()]"
-        [isCollapsed]="isCollapsed[$index]"
+        [isCollapsed]="isCollapsed()[$index]"
       >
+        @if (task.description) {
         <button
           class="btn btn-outline-secondary"
-          (click)="isCollapsed[$index] = !isCollapsed[$index]"
+          (click)="isCollapsed()[$index] = !isCollapsed()[$index]"
         >
           <i class="bi bi-card-text"></i>
         </button>
+        } @else {
+        <span ngbTooltip="There is no description" [openDelay]="300">
+          <button class="btn btn-outline-secondary" disabled>
+            <i class="bi bi-card-text"></i>
+          </button>
+        </span>
+        }
       </tr>
       <tr>
         <td class="p-0"></td>
         <td colspan="4" class="p-0">
           <div
-            [ngbCollapse]="isCollapsed[$index]"
+            [ngbCollapse]="isCollapsed()[$index]"
             [id]="'taskDescription' + $index"
             #collapse="ngbCollapse"
           >

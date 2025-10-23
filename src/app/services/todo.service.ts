@@ -19,12 +19,25 @@ export class TodoService {
       description: 'Tylko nie odkładaj tego na inny dzień!',
     },
     {
+      name: 'Posprzątać',
+      status: 'Pending',
+      date: '2025-05-10',
+      description: null,
+    },
+    {
       name: 'Urodziny mamy',
       status: 'Planned',
       date: '2025-05-15',
       description: 'Kupić kwiaty i tort.',
     },
   ]);
+
+  isCollapsed = signal<boolean[]>(this.tasks().map(() => true));
+
+  addTask(task: Todo) {
+    this.tasks.update((tasks) => tasks.concat(task));
+    this.isCollapsed.update((isCollapsed) => [...isCollapsed, true]);
+  }
 
   constructor() {}
 

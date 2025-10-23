@@ -51,10 +51,7 @@ export class TodoAddFormComponent {
       description: this.todoForm.value.description!,
       status: 'Planned',
     };
-    this.todoService.tasks.update((tasks) => {
-      tasks.push(newTask);
-      return tasks;
-    });
+    this.todoService.addTask(newTask);
     this.closeModal();
 
     this.todoForm.reset();

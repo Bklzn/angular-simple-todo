@@ -4,7 +4,7 @@ import { TodoService } from './services/todo.service';
 import { TodoAddFormComponent } from './components/todo-add-form/todo-add-form.component';
 import { NgClass } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     TodoAddFormComponent,
     NgClass,
     NgbCollapseModule,
+    NgbTooltip,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -21,12 +22,12 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'angular-simple-todo';
   todoService = inject(TodoService);
-  tasks = this.todoService.tasks();
+  tasks = this.todoService.tasks;
+  isCollapsed = this.todoService.isCollapsed;
 
   constructor(private titleService: Title) {
     effect(() => {
       this.titleService.setTitle(this.title);
     });
   }
-  isCollapsed = this.tasks.map(() => true);
 }
