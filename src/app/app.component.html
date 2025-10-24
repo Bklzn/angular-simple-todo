@@ -33,14 +33,18 @@
       >
         @if (task.description) {
         <button
-          class="btn btn-outline-secondary"
+          class="btn btn-outline-secondary border-0"
           (click)="isCollapsed()[$index] = !isCollapsed()[$index]"
         >
           <i class="bi bi-card-text"></i>
         </button>
         } @else {
-        <span ngbTooltip="There is no description" [openDelay]="300">
-          <button class="btn btn-outline-secondary" disabled>
+        <span
+          ngbTooltip="There is no description"
+          class="d-inline-block"
+          [openDelay]="300"
+        >
+          <button class="btn btn-outline-secondary border-0" disabled>
             <i class="bi bi-card-text"></i>
           </button>
         </span>

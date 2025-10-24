@@ -1,21 +1,39 @@
-<td>
+<td class="align-middle">
   <input
     type="checkbox"
     class="form-check-input me-2"
     [checked]="task().status === 'Completed'"
-    (change)="toggleCompleted(task())"
+    [indeterminate]="task().status === 'Pending'"
+    (change)="toggleStatus(task())"
     [id]="'taskName' + index"
   />
 </td>
-<td (click)="toggleCompleted(task())" role="button">
-  <b class="text-primary w-25">{{ task().name }}</b>
+<td (click)="toggleStatus(task())" class="align-middle" role="button">
+  <b
+    class="text-primary w-25 user-select-none"
+    [ngClass]="{
+      'text-decoration-line-through text-secondary opacity-50':
+        task().status === 'Completed'
+    }"
+    >{{ task().name }}</b
+  >
 </td>
 <td>
   <ng-content></ng-content>
 </td>
-<td>{{ task().date }}</td>
-<td style="min-width: 100px">
-  <span class="badge bg-info">{{ task().status }}</span>
+<td class="align-middle">
+  <span>{{ task().date }}</span>
+</td>
+<td style="min-width: 100px" class="align-middle">
+  <span
+    class="badge"
+    [ngClass]="{
+      'bg-success': task().status === 'Completed',
+      'bg-info': task().status === 'Pending',
+      'bg-secondary': task().status === 'Planned'
+    }"
+    >{{ task().status }}</span
+  >
 </td>
 <td>
   <div class="d-flex flex-wrap">

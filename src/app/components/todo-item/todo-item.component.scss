@@ -1,3 +1,7 @@
 td {
   border: none;
 }
+input:indeterminate {
+  background-color: var(--bs-secondary) !important;
+  border-color: var(--bs-secondary) !important;
+}
